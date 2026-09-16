@@ -17,7 +17,15 @@ dependencies = [
 ]
 
 [project.optional-dependencies]
-test = ["pytest>=8"]
+test = [
+    "pytest>=8",
+    # Not on PyPI: local sibling repo, editable-installed
+    # (`pip install -e ../categorical-lift-engine`). Only needed to assert
+    # msr.abi.StabilizedTrajectory satisfies cle.abi.inputs.StabilizedTrajectoryLike
+    # (tests/test_trajectory_cle_protocol.py) — sensos-core's own runtime
+    # code does not depend on cle.
+    "categorical-lift-engine",
+]
 
 [tool.setuptools.packages.find]
 include = ["sensos_core*"]
