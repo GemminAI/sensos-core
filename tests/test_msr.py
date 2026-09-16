@@ -2,7 +2,7 @@ import json
 
 import pytest
 
-from sensos_core.msr import Calibration, evaluate_manifold_shift, load_calibration
+from sensos_core.manifold_shift import Calibration, evaluate_manifold_shift, load_calibration
 
 
 @pytest.fixture

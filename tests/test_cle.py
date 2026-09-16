@@ -1,6 +1,6 @@
 from datetime import datetime, timedelta, timezone
 
-from sensos_core.cle import (
+from sensos_core.context_lifecycle_engine import (
     ArchiveThresholds,
     AttentionContext,
     ContextLifecycleEngine,
