@@ -9,6 +9,11 @@ description = "SensOS Core Engine — MeaningMapper, MSR, CLE (SPEC-MM-001_v2 / 
 requires-python = ">=3.11"
 dependencies = [
     "httpx>=0.27",
+    "rfc8785>=0.1.4",
+    # Not on PyPI: local sibling repo, editable-installed
+    # (`pip install -e ../meaning-space-runtime`). A plain `pip install .`
+    # or `uv sync` will not resolve this on its own.
+    "meaning-space-runtime",
 ]
 
 [project.optional-dependencies]

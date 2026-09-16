@@ -11,6 +11,7 @@ nothing in this package imports or depends on a Trie implementation.
 from sensos_core.context_lifecycle_engine import ArchiveThresholds, ContextLifecycleEngine
 from sensos_core.meaning_mapper import ResolvedMeaningObject, resolve_scalar_unit
 from sensos_core.manifold_shift import Calibration, ShiftVerdict, evaluate_manifold_shift, load_calibration
+from sensos_core.trajectory_hash import MeaningState, StabilizedTrajectory, compute_trajectory_hash
 
 __all__ = [
     "ResolvedMeaningObject",
@@ -21,4 +22,7 @@ __all__ = [
     "load_calibration",
     "ArchiveThresholds",
     "ContextLifecycleEngine",
+    "MeaningState",
+    "StabilizedTrajectory",
+    "compute_trajectory_hash",
 ]
