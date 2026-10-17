@@ -1,0 +1,104 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:gmm:sensos:mp:message:0.1",
+  "title": "sensos.mp.message/0.1 payload (carried in a HEXT v2 source)",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["profile", "from", "to", "body", "intent"],
+  "properties": {
+    "profile": { "const": "sensos.mp.message/0.1" },
+    "from": { "$ref": "#/$defs/actor_ref" },
+    "to": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/actor_ref" } },
+    "thread": { "type": "array", "items": { "$ref": "#/$defs/ref" } },
+    "in_reply_to": { "$ref": "#/$defs/ref" },
+    "body": { "type": "string" },
+    "intent": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["purpose", "expects"],
+      "properties": {
+        "purpose": {
+          "type": "object",
+          "additionalProperties": false,
+          "minProperties": 1,
+          "properties": {
+            "usefulness": { "$ref": "#/$defs/score" },
+            "accuracy": { "$ref": "#/$defs/score" },
+            "creativity": { "$ref": "#/$defs/score" }
+          }
+        },
+        "expects": { "enum": ["answer", "act", "clarify", "acknowledge", "none"] }
+      }
+    },
+    "claims": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["id", "text"],
+        "properties": {
+          "id": { "type": "string", "minLength": 1 },
+          "text": { "type": "string" },
+          "time": {
+            "description": "Optional subject/historical time attribute of the claim (never an ordering time; ordering uses HEXT time.observed_at).",
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["frame", "expression"],
+            "properties": {
+              "frame": { "enum": ["absolute", "relative", "actor", "historical", "future"] },
+              "expression": { "type": "string" },
+              "value": { "type": "string" }
+            }
+          }
+        }
+      }
+    },
+    "premises": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["id", "text"],
+        "properties": { "id": { "type": "string", "minLength": 1 }, "text": { "type": "string" } }
+      }
+    },
+    "grounds": {
+      "type": "array",
+      "items": {
+        "oneOf": [
+          {
+            "type": "object", "additionalProperties": false, "required": ["kind", "id", "state_hash"],
+            "properties": { "kind": { "const": "hext" }, "id": { "type": "string", "minLength": 1 }, "state_hash": { "$ref": "#/$defs/sha256" } }
+          },
+          {
+            "type": "object", "additionalProperties": false, "required": ["kind", "trajectory_id"],
+            "properties": { "kind": { "const": "hekb_trajectory" }, "trajectory_id": { "type": "string", "minLength": 1 } }
+          },
+          {
+            "type": "object", "additionalProperties": false, "required": ["kind", "ref"],
+            "properties": { "kind": { "const": "causal_log" }, "ref": { "type": "string", "minLength": 1 } }
+          }
+        ]
+      }
+    },
+    "uncertainty": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["ref", "value"],
+        "properties": { "ref": { "type": "string", "minLength": 1 }, "value": { "$ref": "#/$defs/score" } }
+      }
+    },
+    "repairs": { "$ref": "#/$defs/ref" }
+  },
+  "$defs": {
+    "sha256": { "type": "string", "pattern": "^sha256:[0-9a-f]{64}$" },
+    "score": { "type": "integer", "minimum": 0, "maximum": 1000 },
+    "actor_ref": { "type": "string", "pattern": "^[a-z][a-z0-9_-]*:.+$" },
+    "ref": {
+      "type": "object", "additionalProperties": false, "required": ["id", "state_hash"],
+      "properties": { "id": { "type": "string", "minLength": 1 }, "state_hash": { "$ref": "#/$defs/sha256" } }
+    }
+  }
+}

@@ -1,0 +1,95 @@
+{
+  "valid": [
+    {
+      "name": "mp0-message-01",
+      "profile": "sensos.mp.message/0.1",
+      "object_id": "mp0-message-01",
+      "sealed_at": "2026-10-18T09:00:00Z",
+      "observed_at": {
+        "value": "2026-10-18T08:59:30Z",
+        "precision": "second",
+        "tz": "explicit"
+      },
+      "state_hash": "sha256:3711efa9b19b65db354d82eaa598fdf8ba5936da77d10b60e3ac388495f0775c"
+    },
+    {
+      "name": "mp0-message-02",
+      "profile": "sensos.mp.message/0.1",
+      "object_id": "mp0-message-02",
+      "sealed_at": "2026-10-18T09:00:00Z",
+      "observed_at": null,
+      "state_hash": "sha256:a29d4331da8fdc2fec15aa0e1e17422404412bead24f9b7d3e5735bea6ac1b34"
+    },
+    {
+      "name": "mp0-readback-01",
+      "profile": "sensos.mp.readback/0.1",
+      "object_id": "mp0-readback-01",
+      "sealed_at": "2026-10-18T09:00:00Z",
+      "observed_at": {
+        "value": "2026-10-18T08:59:30Z",
+        "precision": "second",
+        "tz": "explicit"
+      },
+      "state_hash": "sha256:2fd708ac0d81965831c7110959893353838af232977d96dcbeff229e44179d8c"
+    },
+    {
+      "name": "mp0-alignment-01",
+      "profile": "sensos.mp.alignment/0.1",
+      "object_id": "mp0-alignment-01",
+      "sealed_at": "2026-10-18T09:00:00Z",
+      "observed_at": {
+        "value": "2026-10-18T08:59:30Z",
+        "precision": "second",
+        "tz": "explicit"
+      },
+      "state_hash": "sha256:5acc361df07c20f9151db9ecd8aaab8cdadedfb39d5acd763ed3e55f91044691"
+    }
+  ],
+  "invalid": [
+    {
+      "name": "message-float-uncertainty",
+      "layer": "strict",
+      "expect": "float"
+    },
+    {
+      "name": "message-float-integral",
+      "layer": "strict",
+      "expect": "float"
+    },
+    {
+      "name": "message-purpose-empty",
+      "layer": "schema",
+      "expect": "minProperties"
+    },
+    {
+      "name": "message-uncertainty-1001",
+      "layer": "schema",
+      "expect": "maximum"
+    },
+    {
+      "name": "message-to-empty",
+      "layer": "schema",
+      "expect": "minItems"
+    },
+    {
+      "name": "message-expects-unknown",
+      "layer": "schema",
+      "expect": "enum"
+    },
+    {
+      "name": "message-uncertainty-dangling",
+      "layer": "semantic",
+      "expect": "dangling_uncertainty_ref"
+    },
+    {
+      "name": "readback-target-missing",
+      "layer": "schema",
+      "expect": "required"
+    },
+    {
+      "name": "alignment-status-unknown",
+      "layer": "schema",
+      "expect": "enum"
+    }
+  ]
+}

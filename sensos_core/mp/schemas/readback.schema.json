@@ -1,0 +1,33 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:gmm:sensos:mp:readback:0.1",
+  "title": "sensos.mp.readback/0.1 payload (carried in a HEXT v2 annotation)",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["profile", "target", "reader", "paraphrase", "received_claims", "assumed", "missing", "expects_understood"],
+  "properties": {
+    "profile": { "const": "sensos.mp.readback/0.1" },
+    "target": { "$ref": "#/$defs/ref" },
+    "reader": { "$ref": "#/$defs/actor_ref" },
+    "paraphrase": { "type": "string" },
+    "received_claims": {
+      "type": "array",
+      "items": {
+        "type": "object", "additionalProperties": false, "required": ["claim_ref", "text"],
+        "properties": { "claim_ref": { "type": ["string", "null"], "minLength": 1 }, "text": { "type": "string" } }
+      }
+    },
+    "assumed": { "type": "array", "items": { "$ref": "#/$defs/textItem" } },
+    "missing": { "type": "array", "items": { "$ref": "#/$defs/textItem" } },
+    "expects_understood": { "enum": ["answer", "act", "clarify", "acknowledge", "none"] }
+  },
+  "$defs": {
+    "sha256": { "type": "string", "pattern": "^sha256:[0-9a-f]{64}$" },
+    "actor_ref": { "type": "string", "pattern": "^[a-z][a-z0-9_-]*:.+$" },
+    "textItem": { "type": "object", "additionalProperties": false, "required": ["text"], "properties": { "text": { "type": "string" } } },
+    "ref": {
+      "type": "object", "additionalProperties": false, "required": ["id", "state_hash"],
+      "properties": { "id": { "type": "string", "minLength": 1 }, "state_hash": { "$ref": "#/$defs/sha256" } }
+    }
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "profile": "sensos.mp.message/0.1",
+  "from": "mlx:llama-3.1-8b-instruct:4bit",
+  "to": [
+    "human:tomo",
+    "api:anthropic:claude-example"
+  ],
+  "thread": [
+    {
+      "id": "mp0-message-01",
+      "state_hash": "sha256:3711efa9b19b65db354d82eaa598fdf8ba5936da77d10b60e3ac388495f0775c"
+    }
+  ],
+  "in_reply_to": {
+    "id": "mp0-message-01",
+    "state_hash": "sha256:3711efa9b19b65db354d82eaa598fdf8ba5936da77d10b60e3ac388495f0775c"
+  },
+  "body": "N=122 では M1 の最小検出差は 0.15 です。",
+  "intent": {
+    "purpose": {
+      "creativity": 1000
+    },
+    "expects": "acknowledge"
+  },
+  "repairs": {
+    "id": "mp0-message-01",
+    "state_hash": "sha256:3711efa9b19b65db354d82eaa598fdf8ba5936da77d10b60e3ac388495f0775c"
+  }
+}

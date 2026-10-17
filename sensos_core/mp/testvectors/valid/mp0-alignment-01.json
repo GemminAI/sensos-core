@@ -1,0 +1,44 @@
+{
+  "profile": "sensos.mp.alignment/0.1",
+  "target": {
+    "id": "mp0-message-01",
+    "state_hash": "sha256:3711efa9b19b65db354d82eaa598fdf8ba5936da77d10b60e3ac388495f0775c"
+  },
+  "readback": {
+    "id": "mp0-readback-01",
+    "state_hash": "sha256:2fd708ac0d81965831c7110959893353838af232977d96dcbeff229e44179d8c"
+  },
+  "aligner": {
+    "kind": "rule",
+    "ref": "mp0-claim-matcher",
+    "version": "0.1"
+  },
+  "inputs_sha256": [
+    "sha256:3711efa9b19b65db354d82eaa598fdf8ba5936da77d10b60e3ac388495f0775c",
+    "sha256:2fd708ac0d81965831c7110959893353838af232977d96dcbeff229e44179d8c"
+  ],
+  "rule_sha256": "sha256:abababababababababababababababababababababababababababababababab",
+  "results": [
+    {
+      "ref": "c1",
+      "status": "preserved"
+    },
+    {
+      "ref": "c2",
+      "status": "lost"
+    },
+    {
+      "ref": null,
+      "status": "added"
+    },
+    {
+      "ref": "p1",
+      "status": "conflict"
+    },
+    {
+      "ref": null,
+      "status": "missing_candidate"
+    }
+  ],
+  "verification_status": "unverified"
+}

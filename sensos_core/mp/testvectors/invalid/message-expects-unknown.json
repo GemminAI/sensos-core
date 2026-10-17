@@ -1,0 +1,65 @@
+{
+  "profile": "sensos.mp.message/0.1",
+  "from": "human:tomo",
+  "to": [
+    "mlx:llama-3.1-8b-instruct:4bit"
+  ],
+  "body": "  この実験の N は 122 のままでよいですか？ 理由も。\n",
+  "intent": {
+    "purpose": {
+      "accuracy": 800,
+      "usefulness": 600
+    },
+    "expects": "shout"
+  },
+  "claims": [
+    {
+      "id": "c1",
+      "text": "N は現在 122 である",
+      "time": {
+        "frame": "absolute",
+        "expression": "現在"
+      }
+    },
+    {
+      "id": "c2",
+      "text": "段 3 は 2026-10-17 に完了した",
+      "time": {
+        "frame": "historical",
+        "expression": "10-17",
+        "value": "2026-10-17"
+      }
+    }
+  ],
+  "premises": [
+    {
+      "id": "p1",
+      "text": "検出力の限界は N で決まる"
+    }
+  ],
+  "grounds": [
+    {
+      "kind": "hext",
+      "id": "hext2-three-sentences",
+      "state_hash": "sha256:abababababababababababababababababababababababababababababababab"
+    },
+    {
+      "kind": "hekb_trajectory",
+      "trajectory_id": "traj-0001"
+    },
+    {
+      "kind": "causal_log",
+      "ref": "causal/exp_hekbv3_d71_stage3#L1"
+    }
+  ],
+  "uncertainty": [
+    {
+      "ref": "c1",
+      "value": 900
+    },
+    {
+      "ref": "p1",
+      "value": 0
+    }
+  ]
+}

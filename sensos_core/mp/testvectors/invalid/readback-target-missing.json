@@ -1,0 +1,26 @@
+{
+  "profile": "sensos.mp.readback/0.1",
+  "reader": "mlx:llama-3.1-8b-instruct:4bit",
+  "paraphrase": "N を 122 に保つかどうかと、その理由を尋ねている。",
+  "received_claims": [
+    {
+      "claim_ref": "c1",
+      "text": "N は 122"
+    },
+    {
+      "claim_ref": null,
+      "text": "理由が必要"
+    }
+  ],
+  "assumed": [
+    {
+      "text": "N は被験プロンプト数を指す"
+    }
+  ],
+  "missing": [
+    {
+      "text": "比較する条件の一覧"
+    }
+  ],
+  "expects_understood": "answer"
+}

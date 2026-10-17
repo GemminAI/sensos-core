@@ -19,6 +19,7 @@ dependencies = [
 [project.optional-dependencies]
 test = [
     "pytest>=8",
+    "jsonschema>=4.18",  # sensos_core.mp schema tests (draft 2020-12)
     # Not on PyPI: local sibling repo, editable-installed
     # (`pip install -e ../categorical-lift-engine`). Only needed to assert
     # msr.abi.StabilizedTrajectory satisfies cle.abi.inputs.StabilizedTrajectoryLike
@@ -30,5 +31,13 @@ test = [
 [tool.setuptools.packages.find]
 include = ["sensos_core*"]
 
+[tool.setuptools.package-data]
+"sensos_core.mp" = ["schemas/*.json", "testvectors/**/*.json"]
+
 [tool.pytest.ini_options]
 testpaths = ["tests"]
+
+[[tool.mypy.overrides]]
+# hext2 is an external reference implementation (HEXT_V2_PATH); jsonschema ships no stubs here.
+module = ["hext2", "hext2.*", "jsonschema", "jsonschema.*"]
+ignore_missing_imports = true
